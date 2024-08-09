@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="InfraestructuraService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="TipoAuditoria" EntityType="InfraestructuraService.TipoAuditoria">
+                    <NavigationPropertyBinding Path="TOAUDITORIA" Target="Auditoria"/>
+                </EntitySet>
+                <EntitySet Name="Auditoria" EntityType="InfraestructuraService.Auditoria">
+                    <NavigationPropertyBinding Path="TIPOAUDITORIA" Target="TipoAuditoria"/>
+                </EntitySet>
+                <EntitySet Name="Recomendacion" EntityType="InfraestructuraService.Recomendacion"/>
+            </EntityContainer>
+            <EntityType Name="TipoAuditoria">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="DESCRIPCION" Type="Edm.String" MaxLength="150" Nullable="false"/>
+                <NavigationProperty Name="TOAUDITORIA" Type="Collection(InfraestructuraService.Auditoria)" Partner="TIPOAUDITORIA">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Auditoria">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="DESCRIPCION" Type="Edm.String" MaxLength="150"/>
+                <NavigationProperty Name="TIPOAUDITORIA" Type="InfraestructuraService.TipoAuditoria" Partner="TOAUDITORIA">
+                    <ReferentialConstraint Property="TIPOAUDITORIA_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="TIPOAUDITORIA_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="Recomendacion">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="TITULO" Type="Edm.String" MaxLength="50" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="InfraestructuraService.TipoAuditoria">
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DESCRIPCION"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="GeneratedFacet1"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DESCRIPCION"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.TipoAuditoria/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.TipoAuditoria/DESCRIPCION">
+                <Annotation Term="Common.Label" String="DESCRIPCION"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Auditoria/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Auditoria/DESCRIPCION">
+                <Annotation Term="Common.Label" String="DESCRIPCION"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Auditoria/TIPOAUDITORIA_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Recomendacion/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Recomendacion/TITULO">
+                <Annotation Term="Common.Label" String="TITULO"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
