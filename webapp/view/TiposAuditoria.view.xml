@@ -1,0 +1,29 @@
+<mvc:View
+    controllerName="auditui.auditoriaui.controller.TipoAuditoria"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core"
+>
+    <Page>
+        <content>
+            <List
+                headerText="Tipos de auditoría"
+                items="{
+                    path: '/TipoAuditoria',
+                    sorter: {
+                        path: 'DESCRIPCION'
+                    }
+                }"
+            >
+		<items>
+			<StandardListItem
+				title="{DESCRIPCION}"
+				description="ID: {ID}" />
+		</items>
+	</List>
+        </content>
+    </Page>
+</mvc:View>

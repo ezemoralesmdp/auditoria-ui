@@ -104,6 +104,27 @@
           "target": [
             "TargetMain"
           ]
+        },
+        {
+          "name": "ViewAuditoria",
+          "pattern": "ViewAuditoria",
+          "target": [
+            "TargetAuditoria"
+          ]
+        },
+        {
+          "name": "ViewTiposAuditoria",
+          "pattern": "ViewTiposAuditoria",
+          "target": [
+            "TargetTiposAuditoria"
+          ]
+        },
+        {
+          "name": "ViewRecomendacion",
+          "pattern": "ViewRecomendacion",
+          "target": [
+            "TargetRecomendacion"
+          ]
         }
       ],
       "targets": {
@@ -113,6 +134,27 @@
           "clearControlAggregation": false,
           "viewId": "Main",
           "viewName": "Main"
+        },
+        "TargetAuditoria": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Auditoria",
+          "viewName": "Auditoria"
+        },
+        "TargetTiposAuditoria": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TiposAuditoria",
+          "viewName": "TiposAuditoria"
+        },
+        "TargetRecomendacion": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Recomendacion",
+          "viewName": "Recomendacion"
         }
       }
     },
@@ -122,5 +164,9 @@
       "async": true,
       "id": "App"
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "audituiauditoriaui"
   }
 }
