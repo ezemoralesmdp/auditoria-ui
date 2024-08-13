@@ -17,11 +17,16 @@
                         path: 'DESCRIPCION'
                     }
                 }"
+                mode="SingleSelectMaster"
+                itemPress="onPressTipoAuditoria"
             >
 		<items>
 			<StandardListItem
 				title="{DESCRIPCION}"
-				description="ID: {ID}" />
+				description="ID: {ID}" 
+                icon="sap-icon://accept"
+                type="Active"
+            />
 		</items>
 	</List>
         </content>

@@ -17,13 +17,18 @@
                         path: 'TITULO'
                     }
                 }"
+                mode="SingleSelectMaster"
+                itemPress="onPressRecomendacion"
             >
-		<items>
-			<StandardListItem
-				title="{TITULO}"
-				description="ID: {ID}" />
-		</items>
-	</List>
+                <items>
+                    <StandardListItem
+                        title="{TITULO}"
+                        description="ID: {ID}" 
+                        icon="sap-icon://accept"
+                        type="Active"
+                    />
+                </items>
+            </List>
         </content>
     </Page>
 </mvc:View>

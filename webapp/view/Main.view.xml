@@ -49,6 +49,17 @@
                             <ImageContent src="sap-icon://search" />
                         </TileContent>
                     </GenericTile>
+                    <GenericTile
+                        header="Recomendación"
+                        subheader="Consulta desde Dialog"
+                        press="onRecomendacionResizableDialogPress"
+                        class="sapUiMediumMarginBegin"
+                    >
+                        <TileContent
+                            footer="Click para consultar">
+                            <ImageContent src="sap-icon://search" />
+                        </TileContent>
+                    </GenericTile>
                 </HBox>
             </Panel>
             <Panel 
