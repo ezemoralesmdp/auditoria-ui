@@ -95,7 +95,10 @@
         "viewPath": "auditui.auditoriaui.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "clearControlAggregation": false
+        "clearControlAggregation": false,
+        "bypassed": {
+          "target": "TargetNotFound"
+        }
       },
       "routes": [
         {
@@ -155,6 +158,13 @@
           "clearControlAggregation": false,
           "viewId": "Recomendacion",
           "viewName": "Recomendacion"
+        },
+        "TargetNotFound": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "NotFound",
+          "viewName": "NotFound"
         }
       }
     },
