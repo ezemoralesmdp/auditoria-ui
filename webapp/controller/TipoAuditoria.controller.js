@@ -24,6 +24,5 @@ sap.ui.define([
                                 
                 MessageToast.show(oItem.DESCRIPCION);
             }
-
         });
     });

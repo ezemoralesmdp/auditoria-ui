@@ -57,7 +57,7 @@
                     >
                         <TileContent
                             footer="Click para consultar">
-                            <ImageContent src="sap-icon://search" />
+                            <ImageContent src="sap-icon://inspect" />
                         </TileContent>
                     </GenericTile>
                 </HBox>

@@ -8,6 +8,8 @@ sap.ui.define([
     "sap/m/Button",
     "sap/m/VBox",
     "sap/ui/core/Icon",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
 ],
     function (
         Controller,
@@ -18,7 +20,9 @@ sap.ui.define([
         Text,
         Button,
         VBox,
-        Icon) {
+        Icon,
+        Filter,
+        FilterOperator) {
         "use strict";
 
         // atajo para sap.m.ButtonType
@@ -80,6 +84,23 @@ sap.ui.define([
                 }
 
                 this.oInfoMessageDialog.open();
+            },
+
+            onRecomendacionSearch: function(oEvent) {
+                let aFilter = [];
+                let sQuery = oEvent
+                                .getSource()
+                                .getValue();
+
+                if (sQuery && sQuery.length > 0) {
+                    let oFilter = new Filter("TITULO", FilterOperator.Contains, sQuery);
+                    aFilter.push(oFilter);
+                }
+
+                let oList = this.byId("RecomendacionList");
+                let oBindings = oList
+                                .getBinding("items")
+                                .filter(aFilter);
             }
         });
     });

@@ -9,7 +9,15 @@
 >
     <Page>
         <content>
+            <OverflowToolbar>
+                <SearchField 
+                    liveChange="onRecomendacionSearch" 
+                    width="100%"
+                >
+                </SearchField>
+            </OverflowToolbar>
             <List
+                id="RecomendacionList"
                 headerText="Recomendaciones"
                 items="{
                     path: '/Recomendacion',
@@ -19,6 +27,8 @@
                 }"
                 mode="SingleSelectMaster"
                 itemPress="onPressRecomendacion"
+                growing="true"
+                growingThreshold="3"
             >
                 <items>
                     <StandardListItem
