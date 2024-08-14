@@ -5,7 +5,8 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter",
     "sap/m/MessageToast",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/core/UIComponent"
 ],
     function (Controller,
         JSONModel,
@@ -13,7 +14,8 @@ sap.ui.define([
         FilterOperator,
         Sorter,
         MessageToast,
-        MessageBox) {
+        MessageBox,
+        UIComponent) {
         "use strict";
 
         return Controller.extend("auditui.auditoriaui.controller.Main", {
@@ -217,6 +219,28 @@ sap.ui.define([
             onResetChanges: function() {
                 this._oAuditoriaTable.getBinding("items").resetChanges();
                 this._setUIChanges();
+            },
+
+            onPressSeeDetail: function(oEvent) {
+                // Obtiene el botón que se presionó
+                var oButton = oEvent.getSource();
+
+                // Obtiene el ítem (fila) de la tabla al que pertenece el botón
+                var oItem = oButton.getParent();
+
+                // Obtiene el contexto de datos del ítem
+                var oBindingContext = oItem.getBindingContext();
+
+                if (oBindingContext) {
+                    // Obtiene el objeto de datos
+                    var oAuditoria = oBindingContext.getObject();
+
+                    let oRouter = UIComponent.getRouterFor(this);
+
+                    oRouter.navTo("ViewAuditoriaDetail", {
+                        id: oAuditoria.ID
+                    });
+                }
             }
         });
     });

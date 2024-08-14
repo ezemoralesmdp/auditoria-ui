@@ -1,0 +1,99 @@
+<mvc:View
+    controllerName="auditui.auditoriaui.controller.AuditoriaDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+>
+    <Page
+        title="Detalles"
+    >
+        <uxap:ObjectPageLayout>
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:snappedHeading>
+                        <FlexBox 
+                            fitContainer="true"
+                            alignItems="Center"
+                        >
+                            <!-- <Avatar 
+                                src="{URL}"
+                                class="sapUiTinyMarginEnd"
+                            /> -->
+                            <Title 
+                                text="{DESCRIPCION}"
+                            />
+                        </FlexBox>
+                    </uxap:snappedHeading>
+                    <uxap:snappedContent>
+                        <Title 
+                            text="{DESCRIPCION} ({ID})"
+                            wrapping="true"
+                        ></Title>
+                    </uxap:snappedContent>
+                    <uxap:expandedContent>
+                        <Title 
+                            text="{DESCRIPCION} ({ID})"
+                            wrapping="true"
+                        ></Title>
+                    </uxap:expandedContent>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+
+            <uxap:headerContent>
+                <layout:VerticalLayout>
+                    <!-- <Avatar 
+                        src="{mProduct>ProductPicUrl}"
+                        class="sapUiTinyMarginEnd"
+                    /> -->
+                </layout:VerticalLayout>
+                <layout:VerticalLayout>
+                    <Label text="ID: {ID}"/>
+                    <Label text="Descripción: {DESCRIPCION}"/>
+                    <Label text="Tipo de auditoría: {TIPOAUDITORIA_ID}"/>
+                </layout:VerticalLayout>
+            </uxap:headerContent>
+
+            <uxap:sections>
+                <uxap:ObjectPageSection>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection
+                            title="ID"
+                        >
+                            <uxap:blocks>
+                                <Text 
+                                    text="{ID}"
+                                />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection
+                            title="Descripción"
+                        >
+                            <uxap:blocks>
+                                <Text 
+                                    text="{DESCRIPCION}"
+                                />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection
+                            title="Tipo de Auditoría"
+                        >
+                            <uxap:blocks>
+                                <Text 
+                                    text="{TIPOAUDITORIA_ID}"
+                                />
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </Page>
+</mvc:View>

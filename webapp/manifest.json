@@ -128,6 +128,13 @@
           "target": [
             "TargetRecomendacion"
           ]
+        },
+        {
+          "name": "ViewAuditoriaDetail",
+          "pattern": "ViewAuditoriaDetail/{id}",
+          "target": [
+            "TargetAuditoriaDetail"
+          ]
         }
       ],
       "targets": {
@@ -158,6 +165,13 @@
           "clearControlAggregation": false,
           "viewId": "Recomendacion",
           "viewName": "Recomendacion"
+        },
+        "TargetAuditoriaDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AuditoriaDetail",
+          "viewName": "AuditoriaDetail"
         },
         "TargetNotFound": {
           "viewType": "XML",

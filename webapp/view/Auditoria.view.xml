@@ -122,21 +122,38 @@
                 </headerToolbar>
                 <columns>
                     <Column 
+                        hAlign="Center"
+                        minScreenWidth="Small"
+                        demandPopin="true"
+                        width="10%"
+                    >
+                    </Column>
+                    <Column 
                         hAlign="Begin"
                         minScreenWidth="Small"
-                        demandPopin="true">
+                        demandPopin="true"
+                        width="70%"
+                    >
                         <Text text="{i18n>tableDescripcionAuditoria}"/>
                     </Column>
                     <Column 
                         hAlign="Begin"
                         minScreenWidth="Small"
-                        demandPopin="true">
+                        demandPopin="true"
+                        width="20%"
+                    >
                         <Text text="{i18n>tableTipoAuditoria}"/>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
+                            <Button 
+                                id="detailAuditoriaButton"
+                                text="{i18n>tableVerDetalle}"
+                                press="onPressSeeDetail"
+                                type="Neutral"
+                            />
                             <Input 
                                 value="{DESCRIPCION}"
                                 liveChange="onInputChange"/>
