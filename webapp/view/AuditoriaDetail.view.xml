@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="auditui.auditoriaui.controller.AuditoriaDetail"
+    controllerName="auditui.auditoriaui.controller.Auditoria.AuditoriaDetail"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true"
@@ -10,6 +10,8 @@
 >
     <Page
         title="Detalles"
+        showNavButton="true"
+        navButtonPress="onNavBack"
     >
         <uxap:ObjectPageLayout>
             <uxap:headerTitle>
@@ -46,7 +48,7 @@
             <uxap:headerContent>
                 <layout:VerticalLayout>
                     <!-- <Avatar 
-                        src="{mProduct>ProductPicUrl}"
+                        src="{URL}"
                         class="sapUiTinyMarginEnd"
                     /> -->
                 </layout:VerticalLayout>

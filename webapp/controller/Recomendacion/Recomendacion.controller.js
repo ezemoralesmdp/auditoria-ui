@@ -1,6 +1,5 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent",
+    "../EmmsaController.controller",
     "sap/m/Dialog",
     "sap/m/library",
     "sap/ui/core/library",
@@ -13,7 +12,6 @@ sap.ui.define([
 ],
     function (
         Controller,
-        UIComponent,
         Dialog,
         library,
         coreLibrary,
@@ -34,7 +32,7 @@ sap.ui.define([
         // shortcut for sap.ui.core.ValueState
         var ValueState = coreLibrary.ValueState;
 
-        return Controller.extend("auditui.auditoriaui.controller.Recomendacion", {
+        return Controller.extend("auditui.auditoriaui.controller.Recomendacion.Recomendacion", {
 
             onInit: function () {
             },

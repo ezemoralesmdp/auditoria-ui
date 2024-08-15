@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="auditui.auditoriaui.controller.Recomendacion"
+    controllerName="auditui.auditoriaui.controller.Recomendacion.Recomendacion"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -7,7 +7,11 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:core="sap.ui.core"
 >
-    <Page>
+    <Page
+        title="{i18n>viewRecomendacion}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
         <content>
             <OverflowToolbar>
                 <SearchField 

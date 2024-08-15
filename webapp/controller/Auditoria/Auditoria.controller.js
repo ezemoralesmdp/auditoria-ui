@@ -1,24 +1,20 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "../EmmsaController.controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter",
-    "sap/m/MessageToast",
-    "sap/m/MessageBox",
-    "sap/ui/core/UIComponent"
+    "sap/m/MessageToast"
 ],
     function (Controller,
         JSONModel,
         Filter,
         FilterOperator,
         Sorter,
-        MessageToast,
-        MessageBox,
-        UIComponent) {
+        MessageToast) {
         "use strict";
 
-        return Controller.extend("auditui.auditoriaui.controller.Main", {
+        return Controller.extend("auditui.auditoriaui.controller.Auditoria.Auditoria", {
 
             _loadViewModel: function () {
                 const oViewModel = new JSONModel({
@@ -38,10 +34,6 @@ sap.ui.define([
                 });
 
                 this.getView().setModel(oViewModelFilters, "filters");
-            },
-
-            _getText: function (sTextId, aArgs) {
-                return this.getOwnerComponent().getModel("i18n").getResourceBundle().getText(sTextId, aArgs);
             },
 
             _setUIChanges: function (bHasUIChanges) {
@@ -137,7 +129,7 @@ sap.ui.define([
                     .getBinding("items")
                     .sort(sOrder && new Sorter("DESCRIPCION", sOrder === "desc"));
 
-                sMessage = this._getText("sortMessage", [this._getText(aStateTextIds[iOrder])]);
+                sMessage = this.getText("sortMessage", [this.getText(aStateTextIds[iOrder])]);
 
                 MessageToast.show(sMessage);
             },
@@ -174,7 +166,7 @@ sap.ui.define([
                 const fnSuccess = function () {
                     this._setBusy(false);
                     this._setUIChanges(false);
-                    MessageToast.show(this._getText("changesSentMessage"));
+                    MessageToast.show(this.getText("changesSentMessage"));
                 }.bind(this);
 
                 const fnError = function (oError) {
@@ -200,12 +192,12 @@ sap.ui.define([
                     sAuditoria = oContext.getProperty("DESCRIPCION");
 
                     oContext.delete().then(function() {
-                        MessageToast.show(this._getText("deleteSuccessMessage", sAuditoria));
+                        MessageToast.show(this.getText("deleteSuccessMessage", sAuditoria));
                     }.bind(this), function(oError){
                         this._setUIChanges();
 
                         if (oError.canceled) {
-                            MessageToast.show(this._getText("deleteRestoreMessage", sAuditoria));
+                            MessageToast.show(this.getText("deleteRestoreMessage", sAuditoria));
                             return;
                         }
 
@@ -235,9 +227,7 @@ sap.ui.define([
                     // Obtiene el objeto de datos
                     var oAuditoria = oBindingContext.getObject();
 
-                    let oRouter = UIComponent.getRouterFor(this);
-
-                    oRouter.navTo("ViewAuditoriaDetail", {
+                    this.onNavTo("ViewAuditoriaDetail", {
                         id: oAuditoria.ID
                     });
                 }

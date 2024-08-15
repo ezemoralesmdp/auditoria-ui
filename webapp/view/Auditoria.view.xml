@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="auditui.auditoriaui.controller.Auditoria"
+    controllerName="auditui.auditoriaui.controller.Auditoria.Auditoria"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -7,157 +7,165 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:core="sap.ui.core"
 >
-    <f:DynamicPage
-        id="dynamicPage"
-        showFooter="true"
+    <Page
+        showNavButton="true"
+        navButtonPress="onNavBack"
     >
-        <f:title>
-            <f:DynamicPageTitle>
-                <f:heading>
-                    <Text
-                        text="{i18n>title}"
-                        wrapping="true"
-                    />
-                </f:heading>
-            </f:DynamicPageTitle>
-        </f:title>
+        <f:DynamicPage
+            id="dynamicPage"
+            showFooter="true"
+        >
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title
+                            text="{i18n>viewAuditoriaABM}"
+                            wrapping="true"
+                        />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
 
-        <f:header>
-            <f:DynamicPageHeader>
-                <fb:FilterBar
-                    showRestoreButton="false"
-                    useToolbar="false"
-                    showFilterConfiguration="false"
-                    showGoOnFB="false"
-                >
-                    <fb:filterGroupItems>
-                        <fb:FilterGroupItem
-                            name="Descripcion"
-                            groupName="filters"
-                            label="Descripción"
-                            visibleInFilterBar="true"
-                        >
-                            <fb:control>
-                                <Input
-                                    submit="onSubmitInputDescripcion"
-                                    enabled="{= !${viewModel>/hasUIChanges}}"
-                                />
-                            </fb:control>
-                        </fb:FilterGroupItem>
-                    </fb:filterGroupItems>
+            <f:header>
+                <f:DynamicPageHeader>
+                    <fb:FilterBar
+                        showRestoreButton="false"
+                        useToolbar="false"
+                        showFilterConfiguration="false"
+                        showGoOnFB="false"
+                    >
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                name="Descripcion"
+                                groupName="filters"
+                                label="Descripción"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        submit="onSubmitInputDescripcion"
+                                        enabled="{= !${viewModel>/hasUIChanges}}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
 
-                    <fb:filterGroupItems>
-                        <fb:FilterGroupItem
-                            name="TipoAuditoriaId"
-                            groupName="filters"
-                            label="Tipos de auditoria"
-                            visibleInFilterBar="true"
-                        >
-                            <fb:control>
-                                <ComboBox
-                                    items="{path:'/TipoAuditoria'}"
-                                    selectedKey="{/filters>TipoAuditoriaId}"
-                                    selectionChange="onSubmitComboBoxTipoAuditoriaId"
-                                    enabled="{= !${viewModel>/hasUIChanges}}"
-                                >
-                                    <items>
-                                        <core:Item key="{ID}" text="{DESCRIPCION}" />
-                                    </items>
-                                </ComboBox>
-                            </fb:control>
-                        </fb:FilterGroupItem>
-                    </fb:filterGroupItems>
-                </fb:FilterBar>
-            </f:DynamicPageHeader>
-        </f:header>
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                name="TipoAuditoriaId"
+                                groupName="filters"
+                                label="Tipos de auditoria"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <ComboBox
+                                        items="{path:'/TipoAuditoria'}"
+                                        selectedKey="{/filters>TipoAuditoriaId}"
+                                        selectionChange="onSubmitComboBoxTipoAuditoriaId"
+                                        enabled="{= !${viewModel>/hasUIChanges}}"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                key="{ID}"
+                                                text="{DESCRIPCION}"
+                                            />
+                                        </items>
+                                    </ComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:DynamicPageHeader>
+            </f:header>
 
-        <f:content>
-            <Table 
-                id="auditoriaTable"
-                growing="true"
-                growingThreshold="10"
-                items="{
+            <f:content>
+                <Table
+                    id="auditoriaTable"
+                    growing="true"
+                    growingThreshold="10"
+                    items="{
                     path:'/Auditoria',
                     parameters: {
                         $count: true,
                         $$updateGroupId: 'auditoriaGroup'
                     }
                 }"
-                mode="SingleSelectLeft">
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <content>
-                            <ToolbarSpacer/>
-                            <Button 
-                                id="addAuditoria"
-                                icon="sap-icon://add"
-                                tooltip="{i18n>createAuditoriaButton}"
-                                press="onCreate"
-                                type="Emphasized"
-                            />
-                            <Button 
-                                id="deleteAuditoria"
-                                icon="sap-icon://delete"
-                                tooltip="{i18n>deleteAuditoriaButton}"
-                                press="onDelete"
-                                type="Negative"
-                            />
-                            <Button 
-                                id="sortAuditoria"
-                                icon="sap-icon://sort"
-                                enabled="{= !${viewModel>/hasUIChanges}}"
-                                tooltip="{i18n>sortAuditoriaButton}"
-                                press="onSort"
-                                type="Emphasized"
-                            />
-                            <Button 
-                                id="clearFilters"
-                                icon="sap-icon://clear-filter"
-                                tooltip="{i18n>clearAuditoriaButton}"
-                                press="onClearFilters"
-                                type="Emphasized"
-                            />
-                        </content>
-                    </OverflowToolbar>
-                </headerToolbar>
-                <columns>
-                    <Column 
-                        hAlign="Center"
-                        minScreenWidth="Small"
-                        demandPopin="true"
-                        width="10%"
-                    >
-                    </Column>
-                    <Column 
-                        hAlign="Begin"
-                        minScreenWidth="Small"
-                        demandPopin="true"
-                        width="70%"
-                    >
-                        <Text text="{i18n>tableDescripcionAuditoria}"/>
-                    </Column>
-                    <Column 
-                        hAlign="Begin"
-                        minScreenWidth="Small"
-                        demandPopin="true"
-                        width="20%"
-                    >
-                        <Text text="{i18n>tableTipoAuditoria}"/>
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Button 
-                                id="detailAuditoriaButton"
-                                text="{i18n>tableVerDetalle}"
-                                press="onPressSeeDetail"
-                                type="Neutral"
-                            />
-                            <Input 
-                                value="{DESCRIPCION}"
-                                liveChange="onInputChange"/>
-                            <ComboBox
+                    mode="SingleSelectLeft"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <ToolbarSpacer />
+                                <Button
+                                    id="addAuditoria"
+                                    icon="sap-icon://add"
+                                    tooltip="{i18n>createButton}"
+                                    press="onCreate"
+                                    type="Emphasized"
+                                />
+                                <Button
+                                    id="deleteAuditoria"
+                                    icon="sap-icon://delete"
+                                    tooltip="{i18n>deleteButton}"
+                                    press="onDelete"
+                                    type="Negative"
+                                />
+                                <Button
+                                    id="sortAuditoria"
+                                    icon="sap-icon://sort"
+                                    enabled="{= !${viewModel>/hasUIChanges}}"
+                                    tooltip="{i18n>sortButton}"
+                                    press="onSort"
+                                    type="Emphasized"
+                                />
+                                <Button
+                                    id="clearFilters"
+                                    icon="sap-icon://clear-filter"
+                                    tooltip="{i18n>clearButton}"
+                                    press="onClearFilters"
+                                    type="Emphasized"
+                                />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column
+                            hAlign="Center"
+                            minScreenWidth="Small"
+                            demandPopin="true"
+                            width="10%"
+                        />
+                        <Column
+                            hAlign="Begin"
+                            minScreenWidth="Small"
+                            demandPopin="true"
+                            width="70%"
+                        >
+                            <Text text="{i18n>tableDescripcionAuditoria}" />
+                        </Column>
+                        <Column
+                            hAlign="Begin"
+                            minScreenWidth="Small"
+                            demandPopin="true"
+                            width="20%"
+                        >
+                            <Text text="{i18n>tableTipoAuditoria}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Button
+                                    id="detailAuditoriaButton"
+                                    text="{i18n>tableVerDetalle}"
+                                    press="onPressSeeDetail"
+                                    type="Neutral"
+                                />
+                                <Input
+                                    value="{DESCRIPCION}"
+                                    liveChange="onInputChange"
+                                />
+                                <ComboBox
                                     items="{
                                         path:'/TipoAuditoria',
                                         templateShareable: true
@@ -166,32 +174,35 @@
                                     selectionChange="onInputChange"
                                 >
                                     <items>
-                                        <core:Item key="{ID}" text="{DESCRIPCION}" />
+                                        <core:Item
+                                            key="{ID}"
+                                            text="{DESCRIPCION}"
+                                        />
                                     </items>
-                            </ComboBox>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </f:content>
-        
-        <f:footer>
-            <OverflowToolbar
-                visible="{viewModel>/hasUIChanges}">
-                <ToolbarSpacer/>
-                <Button 
-                    id="saveButton"
-                    text="{i18n>saveButton}"
-                    press="onSave"
-                    type="Success"
-                />
-                <Button 
-                    id="cancelButton"
-                    text="{i18n>cancelButton}"
-                    press="onResetChanges"
-                    type="Negative"
-                />
-            </OverflowToolbar>
-        </f:footer>
-    </f:DynamicPage>
+                                </ComboBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </f:content>
+
+            <f:footer>
+                <OverflowToolbar visible="{viewModel>/hasUIChanges}">
+                    <ToolbarSpacer />
+                    <Button
+                        id="saveButton"
+                        text="{i18n>saveButton}"
+                        press="onSave"
+                        type="Success"
+                    />
+                    <Button
+                        id="cancelButton"
+                        text="{i18n>cancelButton}"
+                        press="onResetChanges"
+                        type="Negative"
+                    />
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </Page>
 </mvc:View>

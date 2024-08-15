@@ -1,6 +1,5 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent",
+    "./EmmsaController.controller",
     "sap/m/Dialog",
     "sap/m/List",
     "sap/m/StandardListItem",
@@ -9,7 +8,6 @@ sap.ui.define([
 ],
     function (
         Controller,
-        UIComponent,
         Dialog,
         List,
         StandardListItem,
@@ -29,18 +27,15 @@ sap.ui.define([
             },
 
             onViewAuditoria: function () {
-                let oRouter = UIComponent.getRouterFor(this);
-                oRouter.navTo("ViewAuditoria");
+                this.onNavTo("ViewAuditoria");
             },
 
             onViewTiposAuditoria: function () {
-                let oRouter = UIComponent.getRouterFor(this);
-                oRouter.navTo("ViewTiposAuditoria");
+                this.onNavTo("ViewTiposAuditoria");
             },
 
             onViewRecomendacion: function () {
-                let oRouter = UIComponent.getRouterFor(this);
-                oRouter.navTo("ViewRecomendacion");
+                this.onNavTo("ViewRecomendacion");
             },
 
             onRecomendacionResizableDialogPress: function () {

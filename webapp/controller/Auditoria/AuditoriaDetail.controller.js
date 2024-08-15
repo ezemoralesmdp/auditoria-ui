@@ -1,14 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent"
-], function (
-    Controller,
-    UIComponent) {
+    "../EmmsaController.controller"
+], function (Controller) {
     "use strict";
 
-    return Controller.extend("auditui.auditoriaui.controller.AuditoriaDetail", {
+    return Controller.extend("auditui.auditoriaui.controller.Auditoria.AuditoriaDetail", {
         _onBindingChange: function (oEvent) {
-            let oRouter = UIComponent.getRouterFor(this);
+            let oRouter = this.getRouter();
             let oBoundContext = oEvent.getSource().getBoundContext();
 
             oBoundContext.requestObject()
@@ -42,7 +39,7 @@ sap.ui.define([
         },
 
         onInit: function () {
-            let oRouter = UIComponent.getRouterFor(this);
+            let oRouter = this.getRouter();
 
             // Con attachMatched adjuntamos un evento que se dispara al ingresar a ViewAuditoriaDetail
             // El segundo this nos asegura mantener el contexto al controlador actual
